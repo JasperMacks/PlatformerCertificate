@@ -3,8 +3,8 @@ var Keyboard = function() {
 	
 	//these set it up so that our onKeyDown and onKeyUp function get called
 	//when the keys are pressed and released
-	windows.addEventListener('keydown', function(evt) {self.onKeyDown(evt);}, false);
-	windows.addEventListener('keyup', function(evt) {self.onKeyUp(evt);}, false);
+	window.addEventListener('keydown', function(evt) {self.onKeyDown(evt);}, false);
+	window.addEventListener('keyup', function(evt) {self.onKeyUp(evt);}, false);
 
 	this.key = new Array();
 	
@@ -22,13 +22,13 @@ var Keyboard = function() {
 };
 
 Keyboard.prototype.onKeyDown = function(evt){
-	this.keys[evt.keyCode] = true;
-}
+	this.key[evt.keyCode] = true;
+};
 
 Keyboard.prototype.onKeyUp = function(evt){
-	this.keys[evt.keyCode] = true;
-}	
+	this.key[evt.keyCode] = false;
+};
 
-Keyboard.prototype.onKeyUp = function(evt){
-	return this.keys[keyCode];
-}
+Keyboard.prototype.isKeyDown = function(keyCode){
+	return this.key[keyCode];
+};
