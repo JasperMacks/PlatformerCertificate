@@ -28,7 +28,7 @@ Vector2.prototype.subtract = function ( other_vector ){
 	var result = new Vector2();
 	
 	result.x = this.x + other_vector.x;
-	result.y = this.y + other_vector.y;
+	result.y = this.y - other_vector.y;
 	
 	return result;
 }
@@ -41,11 +41,11 @@ Vector2.prototype.multiplyScalar = function( scalar ){
 	result.x = this.x * scalar;
 	result.y = this.y * scalar;
 	
-	return results;
+	return result;
 }
 
 
-Vector2.prototype.lenght = function(){
+Vector2.prototype.length = function(){
 
 	var result = Math.sqrt(this.x * this.x + this.y * this.y);
 	return result;

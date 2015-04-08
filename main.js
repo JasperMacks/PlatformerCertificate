@@ -53,6 +53,46 @@ var TILESET_COUNT_Y = 14;
 var tileset = document.createElement("img");
 tileset.src = "tileset.png";
 
+//Collision
+var cells = [];
+
+function initializeCollision(){
+
+	//Loop through each layer
+	for (var layerIdx = 0 ; layerIdx < LAYER_COUNT ; ++layerIdx )
+	{
+		cells[layerIdx] = [];
+		
+		var idx = 0;
+		//Loop through each row
+		for (var y = 0; y < level1.layers[layerIdx.height] ; ++y)
+		{
+			cells[layerIdx][y] = [];
+
+			//loop through each cell
+			for (var x = 0; x < level1.layers[layerIdx].width ; ++x)
+			{
+				//if the tile for this cell is not empty
+				if (level1.layers[layerIdx].data[idx] != 0 )
+				{
+					//set the 3 cells around it to be colliders
+					cells[layerIdx][y][x] = 1;
+					cells[layerIdx][y][x+1] = 1;
+					cells[layerIdx][y-1][x+1] = 1;
+					cells[layerIdx][y-1][x] = 1;
+				}
+				
+				else if (cells[layerIdx][y][x] != 1);
+				{
+					cells[layerIdx][y][x] = 0;
+				}
+				
+				++idx;
+			}
+		}
+	}
+}
+
 
 function drawMap(){
 	
@@ -143,6 +183,7 @@ function run()
 	context.fillText("Frames Per Second: " + fps, 5, 20, 200);
 }
 
+initializeCollision();
 
 //-------------------- Don't modify anything below here
 
