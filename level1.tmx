@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="70" height="70" tilewidth="35" tileheight="35" nextobjectid="1">
+ <tileset firstgid="1" name="Platformer" tilewidth="70" tileheight="70" spacing="2" margin="2">
+  <image source="../../../Desktop/Cert2Platformer/tileset.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="Background" width="70" height="70">
+  <data encoding="base64" compression="zlib">
+   eJzt1kEKwjAQQNE5gisv6V16jV7TrQQDUUNnYl7hLwpZTB5J6RkRZ6EeRcp24MKFCxcuXLhwWdkl24LLuMuNS9cl2ybbonePsm2yLbh85pJdtsVVLvcmLuufl9k+2fuo6JK9hxkFlyEbLv0zIymnKDBDtf7xmzvLgwmTEY8dTXb5f/vFoPU4Xsqe/WqX3toj9nIZXbuTyzcm796l7JxHLly4cOFSIS5cJEl7FQVmqB4jNpLWKArMoHWKAjNojaLADNVqn+x5qsRFkiRV7gmMA6ap
+  </data>
+ </layer>
+ <layer name="Platforms" width="70" height="70">
+  <data encoding="base64" compression="zlib">
+   eJztmt9t4zAMhzVCgRvlJghwIxw6QfboBgW6w7206Fsfst5VQAnQBEmRkh1Sjj6AsBP/1defbFdOKTFcUb0lrCiWF55Lye0mikvJ7SaSzG6iWV54lhee5YXnUrbXmWgfWbxUsJtoH1BPh7bYxgVNo31gL1ncZMpMPY9MbirRTsBLJdoNZAXms3ipLDdbL9hNFNhH77XmWvZ7FqLnEemIngOel84fltHnQ65m9KIdn3NlOecRP9yxRviNprgqf77rb2N7T7s9eP1I50DbxRW3HmyPjx/dPzlajnqh7ZeOdy150dxIubUUbfssPiicm9fSzjluJ9dPqJfZ4DL+ypSWC6mf0PnZsHjhSmvrTNcUDa8Xy/6822TE4sXDGZwA2MsI1MdZvPQy0u+y0+sF2v8mzM/upscLl42zZcbrhbZZczMz1Iv298dF+4y07F68oNqD6gXGLq3Pd7j9XJ0hMyNeIq4ze+dCYk8vR9y3vwa2HeGeXnq2OYMX+o6lNztHerH2P+wFoJ4KWv5EijqB9bT7v6ffZciL9k6N88a5gn1aSuIe/UjLLpyf5R0j505zaRnzlca2ZvJSii1X3P4t/59y4x6VaC9H4xkHfSQvGpn7UTRcZirP5f7Pm5m8VHrG4nvL8k47ixcAsjPaZktJx8/oJZrlRWd52XL7mS4vPMvLllt7lYdm5WXLur7oLC9bVl50on/7no2VFx3PGNwjgPNyVjee3yj/I5+5sezMjP4eG3j/md6EqZSVX8bpWdHef7Sq4vW0x9+a26d3v9a8FPQZfy/5kJadJUettnLra+vC9EOYchyRoRatvFQ8fceap1EiXGFa7ebWp8u57zx5icBzPxqpUmSXM+K5F9F1pG0qUl4+E1SllZf/pjCztA==
+  </data>
+ </layer>
+ <layer name="Laders" width="70" height="70">
+  <data encoding="base64" compression="zlib">
+   eJzt2DENACAQBMH3LweFGNiCDhJmFFy2vBkAAAAAAAAAAAB407o94FG6NF2aLk2XpkvTpekCAAAAAPzIN9p0abo0XZouTZemS9OlnXbZ9cgL0w==
+  </data>
+ </layer>
+ <layer name="Door" width="70" height="70">
+  <data encoding="base64" compression="zlib">
+   eJztzjERACAMBLCqByE1igiGh2uiIFUAAAAAAAAAAAAAAAAAAABM1enAo3Y6wFdWOgAAAJcO0bMBsQ==
+  </data>
+ </layer>
+</map>

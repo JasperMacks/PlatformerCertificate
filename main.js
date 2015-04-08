@@ -40,6 +40,25 @@ var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
 
+//Map Variables
+var LAYER_COUNT = 3;
+var MAP = { tw: 70, th: 70 };
+var TILE = 35;
+var TILESET_TILE = 70;
+var TILESET_PADDING = 2;
+var TILESET_SPACING = 2;
+var TILESET_COUNT_X = 14;
+var TILESET_COUNT_Y = 14;
+
+var tileset = document.createElement("img");
+tileset.src = "tileset.png";
+
+
+function DrawMap(){
+	
+
+}
+
 // load an image to draw
 //var chuckNorris = document.createElement("img");
 //chuckNorris.src = "hero.png";

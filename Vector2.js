@@ -1,3 +1,4 @@
+//Vector 2
 //CONSTRUCTOR FUNCTION
 var Vector2 = function(){
 
