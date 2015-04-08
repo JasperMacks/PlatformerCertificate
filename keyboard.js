@@ -1,13 +1,16 @@
-var Keyboard = function() {
+var Keyboard = function() 
+{
 	var self = this;
 	
-	//these set it up so that our onKeyDown and onKeyUp function get called
-	//when the keys are pressed and released
+	//these set it up so that our onKeyDown and onKeyUp function get called when
+	//keys are pressed and released.
 	window.addEventListener('keydown', function(evt) {self.onKeyDown(evt);}, false);
 	window.addEventListener('keyup', function(evt) {self.onKeyUp(evt);}, false);
-
-	this.key = new Array();
 	
+	this.keys = new Array();
+	
+	//go to https://developer.mozilla.org/en-US/docs/DOM/KeyboardEvent to find more key
+	//constants
 	this.KEY_SPACE = 32;
 	this.KEY_LEFT = 37;
 	this.KEY_UP = 38;
@@ -21,14 +24,17 @@ var Keyboard = function() {
 	this.KEY_SHIFT = 16;
 };
 
-Keyboard.prototype.onKeyDown = function(evt){
-	this.key[evt.keyCode] = true;
+Keyboard.prototype.onKeyDown = function(evt)
+{
+	this.keys[evt.keyCode] = true;
 };
 
-Keyboard.prototype.onKeyUp = function(evt){
-	this.key[evt.keyCode] = false;
+Keyboard.prototype.onKeyUp = function(evt)
+{
+	this.keys[evt.keyCode] = false;
 };
 
-Keyboard.prototype.isKeyDown = function(keyCode){
-	return this.key[keyCode];
+Keyboard.prototype.isKeyDown = function(keyCode)
+{
+	return this.keys[keyCode];
 };

@@ -1,6 +1,7 @@
 var canvas = document.getElementById("gameCanvas");
 var context = canvas.getContext("2d");
 
+//setting up delta time variables
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
@@ -40,9 +41,11 @@ var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
 
-//Map Variables
 var LAYER_COUNT = 3;
-var MAP = { tw: 70, th: 70 };
+
+//SET THESE TO HOW BIG YOUR MAP IS tw is width and th is height
+var MAP = { tw:60, th:15 }; 
+
 var TILE = 35;
 var TILESET_TILE = 70;
 var TILESET_PADDING = 2;
@@ -57,35 +60,37 @@ var LAYER_LADDERS = 2;
 var tileset = document.createElement("img");
 tileset.src = "tileset.png";
 
-//Collision
+
 var cells = [];
 
-function initializeCollision(){
-
-	//Loop through each layer
-	for (var layerIdx = 0 ; layerIdx < LAYER_COUNT ; ++layerIdx )
+function initializeCollision()
+{
+	//loop through each layer
+	for ( var layerIdx = 0 ; layerIdx < LAYER_COUNT ; ++layerIdx )
 	{
 		cells[layerIdx] = [];
 		var idx = 0;
-		//Loop through each row
-		for (var y = 0; y < level1.layers[layerIdx].height ; ++y)
+	
+		//loop through each row
+		for ( var y = 0 ; y < level1.layers[layerIdx].height ; ++y)
 		{
 			cells[layerIdx][y] = [];
-
+		
 			//loop through each cell
-			for (var x = 0; x < level1.layers[layerIdx].width ; ++x)
+			for ( var x = 0 ; x < level1.layers[layerIdx].width ; ++x)
 			{
 				//if the tile for this cell is not empty
-				if (level1.layers[layerIdx].data[idx] != 0 )
+				if ( level1.layers[layerIdx].data[idx] != 0 )
 				{
-					//set the 3 cells around it to be colliders
+					//set the 4 cells around it to be colliders
 					cells[layerIdx][y][x] = 1;
 					cells[layerIdx][y][x+1] = 1;
 					cells[layerIdx][y-1][x+1] = 1;
 					cells[layerIdx][y-1][x] = 1;
 				}
 				
-				else if (cells[layerIdx][y][x] != 1);
+				//if the cell hasn't already been set to 1, set it to 0
+				else if (cells[layerIdx][y][x] != 1 )
 				{
 					cells[layerIdx][y][x] = 0;
 				}
@@ -96,81 +101,99 @@ function initializeCollision(){
 	}
 }
 
-function tileToPixel(tile_coord){
-
+function tileToPixel(tile_coord)
+{
 	return tile_coord * TILE;
 }
 
-function pixelToTile(pixel){
-	return Math.floor (pixel / TILE);
-	
+function pixelToTile(pixel)
+{
+	return Math.floor(pixel / TILE);
 }
 
 
-function cellAtTileCoord(layer, tx, ty){
-
-	if ( tx < 0 || tx > MAP.tw || ty < 0 ){
+function cellAtTileCoord(layer, tx, ty)
+{
+	//if off the top, left or right of the map
+	if ( tx < 0 || tx > MAP.tw || ty < 0 )
+	{
 		return 1;
 	}
 	
-	if ( ty >= MAP.th){
+	//if off the bottom of the map
+	if ( ty >= MAP.th )
+	{
 		return 0;
 	}
 	
 	return cells[layer][ty][tx];
 }
 
-function cellAtPixelCoord(layer, x,y){
-
+function cellAtPixelCoord(layer, x, y)
+{
 	var tx = pixelToTile(x);
 	var ty = pixelToTile(y);
 	
 	return cellAtTileCoord(layer, tx, ty);
 }
 
-function drawMap(){
-	
-	//this Loops over all the layers in our tilemap
-	for (var layerIdx = 0; layerIdx < LAYER_COUNT ; ++layerIdx)
+
+
+
+
+
+
+
+
+
+
+
+
+
+function drawMap()
+{
+	if (typeof(level1) === "undefined" )
 	{
-		//render everything in the current Layer (layerIdx)
-		//Look at every tile in the layer in turn, and render them.
+		alert("ADD 'level1' TO JSON FILE");
+	}
+
+
+	//this loops over all the layers in our tilemap
+	for (var layerIdx = 0 ; layerIdx < LAYER_COUNT ; ++layerIdx )
+	{
+		//render everything in the current layer (layerIdx)
+		//look at every tile in the layer in turn, and render them.
 		
 		var idx = 0;
-		
 		//look at each row
 		for (var y = 0 ; y < level1.layers[layerIdx].height ; ++y)
 		{
 			//look at each tile in the row
-			for (var x = 0 ; x < level1.layers[layerIdx].width; ++x)
+			for ( var x = 0 ; x < level1.layers[layerIdx].width ; ++x)
 			{
 				var tileIndex = level1.layers[layerIdx].data[idx] - 1;
-			
+				
 				//if there's actually a tile here
-				if (tileIndex != -1 )
+				if ( tileIndex != -1 )
 				{
 					//draw the current tile at the current location
 					
-					//where in the tilemap is the current tile
+					//where in the tilemap is the current tile?
 					//where in the world should the current tile go?
 					
-					
-					// source x in the tileset
-					var	sx = TILESET_PADDING + (tileIndex % TILESET_COUNT_X) *
+					//source x in the tileset
+					var sx = TILESET_PADDING + (tileIndex % TILESET_COUNT_X) * 
 												(TILESET_TILE + TILESET_SPACING);
-					
-					// source y in the tileset
-					var sy = TILESET_PADDING + (Math.floor(tileIndex / TILESET_COUNT_X)) *
+					//source y in the tileset
+					var sy = TILESET_PADDING + (Math.floor(tileIndex / TILESET_COUNT_X)) * 
 												(TILESET_TILE + TILESET_SPACING);
-												
 					//destination x on the canvas
-					var dx = x * TILE
+					var dx = x * TILE;
 					//destination y on the canvas
 					var dy = (y-1) * TILE;
 					
-					
-					context.drawImage(tileset, sx, sy, TILESET_TILE, TILESET_TILE,
-											   dx, dy,  TILESET_TILE, TILESET_TILE);
+					context.drawImage(tileset, sx, sy, TILESET_TILE, TILESET_TILE, 
+											   dx, dy, TILESET_TILE, TILESET_TILE);
 				}
 				++idx;
 			}
@@ -178,13 +201,8 @@ function drawMap(){
 	}
 }
 
-// load an image to draw
-//var chuckNorris = document.createElement("img");
-//chuckNorris.src = "hero.png";
-
 var keyboard = new Keyboard();
 var player = new Player();
-
 
 function run()
 {
@@ -193,12 +211,11 @@ function run()
 	
 	var deltaTime = getDeltaTime();
 	
+	drawMap();
 	
-	//COMMENTED OUT THIS
-	//context.drawImage(chuckNorris, SCREEN_WIDTH/2 - chuckNorris.width/2, SCREEN_HEIGHT/2 - chuckNorris.height/2);
-	drawMap ();
 	player.update(deltaTime);
 	player.draw();
+	
 	
 		
 	// update the frame counter 
@@ -213,9 +230,10 @@ function run()
 		
 	// draw the FPS
 	context.fillStyle = "#f00";
-	context.font="20px Arial";
-	context.fillText("Frames Per Second: " + fps, 5, 20, 200);
+	context.font="14px Arial";
+	context.fillText("FPS: " + fps, 5, 20, 100);
 }
+
 
 initializeCollision();
 
