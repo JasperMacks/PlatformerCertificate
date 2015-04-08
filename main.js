@@ -50,6 +50,10 @@ var TILESET_SPACING = 2;
 var TILESET_COUNT_X = 14;
 var TILESET_COUNT_Y = 14;
 
+var LAYER_BACKGROUND = 0;
+var LAYER_PLATFORMS = 1;
+var LAYER_LADDERS = 2;
+
 var tileset = document.createElement("img");
 tileset.src = "tileset.png";
 
@@ -62,10 +66,9 @@ function initializeCollision(){
 	for (var layerIdx = 0 ; layerIdx < LAYER_COUNT ; ++layerIdx )
 	{
 		cells[layerIdx] = [];
-		
 		var idx = 0;
 		//Loop through each row
-		for (var y = 0; y < level1.layers[layerIdx.height] ; ++y)
+		for (var y = 0; y < level1.layers[layerIdx].height ; ++y)
 		{
 			cells[layerIdx][y] = [];
 
@@ -93,6 +96,37 @@ function initializeCollision(){
 	}
 }
 
+function tileToPixel(tile_coord){
+
+	return tile_coord * TILE;
+}
+
+function pixelToTile(pixel){
+	return Math.floor (pixel / TILE);
+	
+}
+
+
+function cellAtTileCoord(layer, tx, ty){
+
+	if ( tx < 0 || tx > MAP.tw || ty < 0 ){
+		return 1;
+	}
+	
+	if ( ty >= MAP.th){
+		return 0;
+	}
+	
+	return cells[layer][ty][tx];
+}
+
+function cellAtPixelCoord(layer, x,y){
+
+	var tx = pixelToTile(x);
+	var ty = pixelToTile(y);
+	
+	return cellAtTileCoord(layer, tx, ty);
+}
 
 function drawMap(){
 	

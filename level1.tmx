@@ -5,22 +5,17 @@
  </tileset>
  <layer name="Background" width="70" height="70">
   <data encoding="base64" compression="zlib">
-   eJzt1kEKwjAQQNE5gisv6V16jV7TrQQDUUNnYl7hLwpZTB5J6RkRZ6EeRcp24MKFCxcuXLhwWdkl24LLuMuNS9cl2ybbonePsm2yLbh85pJdtsVVLvcmLuufl9k+2fuo6JK9hxkFlyEbLv0zIymnKDBDtf7xmzvLgwmTEY8dTXb5f/vFoPU4Xsqe/WqX3toj9nIZXbuTyzcm796l7JxHLly4cOFSIS5cJEl7FQVmqB4jNpLWKArMoHWKAjNojaLADNVqn+x5qsRFkiRV7gmMA6ap
+   eJzt1kEKwyAUhGGP0FUv2bvkGr1mV4US8orGkHm++YWBCC6cD5PYGuNovJPllSC44IILLrjgojbBZR0XtQcu/S4PXEIXtY3aI3qP1DZqD1zGXNRRe9zl8twFl/XPy/e5WrdMLuo+V5ngwnk560JwwUXnUtF2tlPFb+6MS9X/0IxLdZNRl8r3lV4Xl/vbP5fR++z2E/X+73aJ1m/Ny6V3vZPLGZOjeaWMuDglu4vqPOKCCy644IILLrisFlxwwQUXXO7t7OjS09/dJTLApd+K4ILLtS6ubq69Z11c3Vx7z7g4m0Xd90O9T1xyxLEzLrjgggsu+YJL7PIBHHRk9g==
   </data>
  </layer>
  <layer name="Platforms" width="70" height="70">
   <data encoding="base64" compression="zlib">
-   eJztmt9t4zAMhzVCgRvlJghwIxw6QfboBgW6w7206Fsfst5VQAnQBEmRkh1Sjj6AsBP/1defbFdOKTFcUb0lrCiWF55Lye0mikvJ7SaSzG6iWV54lhee5YXnUrbXmWgfWbxUsJtoH1BPh7bYxgVNo31gL1ncZMpMPY9MbirRTsBLJdoNZAXms3ipLDdbL9hNFNhH77XmWvZ7FqLnEemIngOel84fltHnQ65m9KIdn3NlOecRP9yxRviNprgqf77rb2N7T7s9eP1I50DbxRW3HmyPjx/dPzlajnqh7ZeOdy150dxIubUUbfssPiicm9fSzjluJ9dPqJfZ4DL+ypSWC6mf0PnZsHjhSmvrTNcUDa8Xy/6822TE4sXDGZwA2MsI1MdZvPQy0u+y0+sF2v8mzM/upscLl42zZcbrhbZZczMz1Iv298dF+4y07F68oNqD6gXGLq3Pd7j9XJ0hMyNeIq4ze+dCYk8vR9y3vwa2HeGeXnq2OYMX+o6lNztHerH2P+wFoJ4KWv5EijqB9bT7v6ffZciL9k6N88a5gn1aSuIe/UjLLpyf5R0j505zaRnzlca2ZvJSii1X3P4t/59y4x6VaC9H4xkHfSQvGpn7UTRcZirP5f7Pm5m8VHrG4nvL8k47ixcAsjPaZktJx8/oJZrlRWd52XL7mS4vPMvLllt7lYdm5WXLur7oLC9bVl50on/7no2VFx3PGNwjgPNyVjee3yj/I5+5sezMjP4eG3j/md6EqZSVX8bpWdHef7Sq4vW0x9+a26d3v9a8FPQZfy/5kJadJUettnLra+vC9EOYchyRoRatvFQ8fceap1EiXGFa7ebWp8u57zx5icBzPxqpUmSXM+K5F9F1pG0qUl4+E1SllZf/pjCztA==
+   eJztmlFqwzAMQH2Ewo6yEwR2hLET9B67QaF32M/G/vbR622CGhRNkq04qRTHD4TTxmmsVzkNTlMaROKM4hosPJlSXDeeTCmuG2+iuonA8MIzvPAMLzxTml9nvJ1E8QJgN95OspfTdulWM6HW2wn2EsVNlJrJ44nkBojiBfB2k2slb0fxAgw3cy/YjRfYx9JrzTmtcy/EjcPTER0D3tZyuKb/94dc7NGLdn7OVc2Yl/rhxtTq5Rm1OICXv3gtHG/J24LFjzQOgObFBdcvH4/P7z0/OTRHLdD8pfOdU1wkN4BUtzVBc9+LDwp1A1xSuc5xntw8oV72BpfLhQmtLqR5Qrf3Ro0XLrRc93RN0bB6qfk86zERqfFioQcnGeylBeqjFy9LaZl3vZLzvwrbR3TD1cbRa4bmrLnpCe37x0HnjLTvUbyjWIu8dll7f4fz56KXmlnqxeM6s0VdSKzlZYvf7Z+GY1t5lJclx/TghT5jWVo7W3qxzD+aD/WU0P4TCeok99PupS3zLkK9aM/UOG+cK6C0VlNah3jEPNJqN4+t5hkj505zWbPmK61t7ckL7lfb37JOhftF8rI1lnXQI3nRiDyPvOFqBnhLj7/fjOQF4K4xW0XpmTYQxUvG+pxCyrkmtPNH8+LN8KIzvMy53dvhhWd4mXMrdzk0o17mjOuLzvAyZ9SLjvd/36Mx6kXHsgZ3BHC99OrG8j/lD/KaW8uOzBr/yQY+7+1NaKVaeapse0V7/lEKwOppje+a+0zr59bWS0Kv8fuSD2lfL3VUypXrr/XN7ZfQcmxRQyVK9QJY5k5tPbXi4QpTypvrT/dz71nqxQPL71FLpCS73COW3yLaRzoGkOrlO0AApXr5BeJoh4Y=
   </data>
  </layer>
  <layer name="Laders" width="70" height="70">
   <data encoding="base64" compression="zlib">
    eJzt2DENACAQBMH3LweFGNiCDhJmFFy2vBkAAAAAAAAAAAB407o94FG6NF2aLk2XpkvTpekCAAAAAPzIN9p0abo0XZouTZemS9OlnXbZ9cgL0w==
-  </data>
- </layer>
- <layer name="Door" width="70" height="70">
-  <data encoding="base64" compression="zlib">
-   eJztzjERACAMBLCqByE1igiGh2uiIFUAAAAAAAAAAAAAAAAAAABM1enAo3Y6wFdWOgAAAJcO0bMBsQ==
   </data>
  </layer>
 </map>
