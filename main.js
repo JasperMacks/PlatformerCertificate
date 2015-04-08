@@ -54,9 +54,54 @@ var tileset = document.createElement("img");
 tileset.src = "tileset.png";
 
 
-function DrawMap(){
+function drawMap(){
 	
-
+	//this Loops over all the layers in our tilemap
+	for (var layerIdx = 0; layerIdx < LAYER_COUNT ; ++layerIdx)
+	{
+		//render everything in the current Layer (layerIdx)
+		//Look at every tile in the layer in turn, and render them.
+		
+		var idx = 0;
+		
+		//look at each row
+		for (var y = 0 ; y < level1.layers[layerIdx].height ; ++y)
+		{
+			//look at each tile in the row
+			for (var x = 0 ; x < level1.layers[layerIdx].width; ++x)
+			{
+				var tileIndex = level1.layers[layerIdx].data[idx] - 1;
+			
+				//if there's actually a tile here
+				if (tileIndex != -1 )
+				{
+					//draw the current tile at the current location
+					
+					//where in the tilemap is the current tile
+					//where in the world should the current tile go?
+					
+					
+					// source x in the tileset
+					var	sx = TILESET_PADDING + (tileIndex % TILESET_COUNT_X) *
+												(TILESET_TILE + TILESET_SPACING);
+					
+					// source y in the tileset
+					var sy = TILESET_PADDING + (Math.floor(tileIndex / TILESET_COUNT_X)) *
+												(TILESET_TILE + TILESET_SPACING);
+												
+					//destination x on the canvas
+					var dx = x * TILE
+					//destination y on the canvas
+					var dy = (y-1) * TILE;
+					
+					
+					context.drawImage(tileset, sx, sy, TILESET_TILE, TILESET_TILE,
+											   dx, dy,  TILESET_TILE, TILESET_TILE);
+				}
+				++idx;
+			}
+		}
+	}
 }
 
 // load an image to draw
@@ -77,6 +122,7 @@ function run()
 	
 	//COMMENTED OUT THIS
 	//context.drawImage(chuckNorris, SCREEN_WIDTH/2 - chuckNorris.width/2, SCREEN_HEIGHT/2 - chuckNorris.height/2);
+	drawMap ();
 	player.update(deltaTime);
 	player.draw();
 	
