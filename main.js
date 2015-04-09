@@ -43,7 +43,7 @@ var fpsTime = 0;
 
 var LAYER_COUNT = 3;
 
-//SET THESE TO HOW BIG YOUR MAP IS tw is width and th is height
+//SET THESE TO HOW BIG YOUR MAP IS the is width and the is height
 var MAP = { tw:60, th:15 }; 
 
 var TILE = 35;
@@ -52,6 +52,19 @@ var TILESET_PADDING = 2;
 var TILESET_SPACING = 2;
 var TILESET_COUNT_X = 14;
 var TILESET_COUNT_Y = 14;
+
+var LEFT = 0;
+var RIGHT = 1;
+var ANIM_IDLE_LEFT = 0;
+var ANIM_JUMP_LEFT = 1;
+var ANIM_WALK_LEFT = 2;
+var ANIM_IDLE_RIGHT = 3;
+var ANIM_JUMP_RIGHT = 4;
+var ANIM_WALK_RIGHT = 5;
+
+var ANIM_MAX = 6;
+
+
 
 var LAYER_BACKGROUND = 0;
 var LAYER_PLATFORMS = 1;
@@ -211,10 +224,18 @@ function run()
 	
 	var deltaTime = getDeltaTime();
 	
+	if (deltaTime > 0.03){
+	
+		deltaTime = 0.03
+	}
+	
+	
+	
 	drawMap();
 	
 	player.update(deltaTime);
 	player.draw();
+	
 	
 	
 		
