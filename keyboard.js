@@ -9,7 +9,6 @@ var Keyboard = function()
 	
 	this.keys = new Array();
 	
-	//go to https://developer.mozilla.org/en-US/docs/DOM/KeyboardEvent to find more key
 	//constants
 	this.KEY_SPACE = 32;
 	this.KEY_LEFT = 37;

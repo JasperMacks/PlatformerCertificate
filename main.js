@@ -230,8 +230,8 @@ function run()
 		
 	// draw the FPS
 	context.fillStyle = "#f00";
-	context.font="14px Arial";
-	context.fillText("FPS: " + fps, 5, 20, 100);
+	context.font="20px Arial";
+	context.fillText("Frames Per Second: " + fps, 3, 20, 220);
 }
 
 
