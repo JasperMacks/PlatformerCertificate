@@ -1,61 +1,72 @@
 var Player = function()
 {
-
 	//load up sprite instead of image
 	this.sprite = new Sprite("ChuckNorris.png");
+
+	//set up all the animations
+	this.sprite.buildAnimation(12, 8, 165, 126, 0.05,
+		[0,1,2,3,4,5,6,7]);//LEFT IDLE ANIMATION
+
+	this.sprite.buildAnimation(12, 8, 165, 126, 0.05,
+		[8,9,10,11,12]);//LEFT JUMP ANIMATION
+
+	this.sprite.buildAnimation(12, 8, 165, 126, 0.05,
+	[13, 14, 15, 16, 17, 18, 19, 
+	20, 21, 22, 23, 24, 25, 26]); //LEFT WALK ANIMATION
+
+	this.sprite.buildAnimation(12,8,165,126,0.05,
+		[52, 53, 54, 55, 56, 57, 58, 59]); //RIGHT IDLE ANIMATION
 	
+	this.sprite.buildAnimation(12,8,165,126,0.05,
+		[60, 61, 62, 63, 64]);//RIGHT JUMP ANIMATION
 	
-	//
 	this.sprite.buildAnimation(12, 8, 165, 126, 0.05,
-		[0, 1, 2, 3, 4, 5, 6, 7]);
-		//left idle animation
-	this.sprite.buildAnimation(12, 8, 165, 126, 0.05,
-		[8, 9, 10, 11, 12]);
-		//left jump animation
-	this.sprite.buildAnimation(12, 8, 165, 126, 0.05,
-		[13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]);
-		// left walk animation
-	this.sprite.buildAnimation(12, 8, 165, 126, 0.05,
-		[52, 53, 54, 55, 56, 57, 58, 59]);
-		//left Idle animation
-	this.sprite.buildAnimation(12, 8, 165, 126, 0.05,
-		[60, 61, 62, 63, 64]);
-		//Right jump animation
-	this.sprite.buildAnimation(12, 8, 165, 126, 0.05,
-		[65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78]);
-		//right walk animation
-		this.width = 159;
-	 this.height = 178;
-		
-	for (var i = 0 ; i < ANIM_MAX; ++i){
-		
-		this.sprite.setAnimationOffset(i, -this.width/2, -this.height/2)
-		
+		[65, 66, 67, 68, 69, 70, 71, 
+		72, 73, 74, 75, 76, 77, 78]);//RIGHT WALK ANIMATION
+
+
+	//set with and height to be the actual size of the image file
+	this.width = 165;
+	this.height = 125;
+
+	for ( var i = 0 ; i < ANIM_MAX ; ++i)
+	{
+		this.sprite.setAnimationOffset(i, 
+								-this.width/2, -this.height/2);
 	}
-		
-	
+
 	this.position = new Vector2();
-	this.position.set(canvas.width / 2, 0, canvas.height/2);
+	this.position.set(canvas.width / 2, canvas.height/2);
 	
 	this.velocity = new Vector2();
 	
-	this.direction = LEFT;
 	
 	this.jumping = false;
 	this.falling = false;
+
+	this.direction = LEFT;
 	
 	this.angularVelocity = 0;
 	this.rotation = 0;
+
 };
 
-Player.prototype.changeDirectionalAnimation = function(leftAnim, rightAnim){
-	if (this.direction == LEFT){
-		if  ( this.sprite.currentAnimation != leftAnim){
-			this.sprite.setAnimation(leftAnim);
+
+
+
+Player.prototype.changeDirectionalAnimation = function(leftAnim, rightAnim)
+{
+	if ( this.direction == LEFT)
+	{
+		if ( this.sprite.currentAnimation != leftAnim )
+		{
+			this.sprite.setAnimation( leftAnim );
 		}
 	}
-	else if ( this.direction == RIGHT) {
-		if  ( this.sprite.currentAnimation != rightAnim){
+	else if ( this.direction == RIGHT )
+	{
+		if ( this.sprite.currentAnimation != rightAnim )
+		{
 			this.sprite.setAnimation(rightAnim);
 		}
 	}
@@ -63,14 +74,19 @@ Player.prototype.changeDirectionalAnimation = function(leftAnim, rightAnim){
 
 
 
+
+
+
+
 Player.prototype.update = function(deltaTime)
 {
-
 	this.sprite.update(deltaTime);
-	
+
 	var acceleration = new Vector2();
 	var playerAccel = 6000;
-	var jumpForce = 60000;
+	
+	var jumpForce = 50000;
+	
 	var playerDrag = 12;
 	var playerGravity = TILE * 9.8 * 6;
 	
@@ -87,23 +103,20 @@ Player.prototype.update = function(deltaTime)
 		this.direction = RIGHT;
 	}
 	
-	
-	if ( this.velocity.y > 0 ){
+	if ( this.velocity.y > 0 )
+	{
 		this.falling = true;
 	}
-	else{
+	else
+	{
 		this.falling = false;
 	}
 	
-	//Jumping
-	if (keyboard.isKeyDown(keyboard.KEY_UP) && !this.jumping && !this.falling){
-	
+	if ( keyboard.isKeyDown(keyboard.KEY_SPACE) && !this.jumping && !this.falling)
+	{
 		acceleration.y -= jumpForce;
 		this.jumping = true;
 	}
-	
-	
-	
 	
 	var dragVector = this.velocity.multiplyScalar(playerDrag);
 	dragVector.y = 0;
@@ -112,16 +125,16 @@ Player.prototype.update = function(deltaTime)
 	this.velocity = this.velocity.add(acceleration.multiplyScalar(deltaTime));
 	this.position = this.position.add(this.velocity.multiplyScalar(deltaTime));
 	
-	
-	
-	//Animation Logic
+
+
+	//DO ANIMATION LOGIC
 	if ( this.jumping || this.falling )
 	{
-		this.changeDirectionalAnimation(ANIM_JUMP_LEFT, ANIM_JUMP_RIGHT);	
-	}	
+		this.changeDirectionalAnimation(ANIM_JUMP_LEFT, ANIM_JUMP_RIGHT);
+	}
 	else
 	{
-		if (Math.abs(this.velocity.x) > 25)
+		if ( Math.abs(this.velocity.x) > 25)
 		{
 			this.changeDirectionalAnimation(ANIM_WALK_LEFT, ANIM_WALK_RIGHT);
 		}
@@ -130,11 +143,22 @@ Player.prototype.update = function(deltaTime)
 			this.changeDirectionalAnimation(ANIM_IDLE_LEFT, ANIM_IDLE_RIGHT);
 		}
 	}
+
+
+
+
+
+	var collisionOffset = new Vector2();
+	collisionOffset.set(-8, this.height/2 - TILE);
 	
+	var collisionPos = this.position.add(collisionOffset);
 	
-	var tx = pixelToTile(this.position.x);
-	var ty = pixelToTile(this.position.y);
-	
+	var tx = pixelToTile(collisionPos .x);
+	var ty = pixelToTile(collisionPos .y);
+		
+	context.beginPath();
+	context.rect(collisionPos .x, collisionPos .y, TILE, TILE);
+	context.stroke();
 	
 	var nx = this.position.x % TILE;
 	var ny = this.position.y % TILE;
@@ -149,9 +173,10 @@ Player.prototype.update = function(deltaTime)
 	{
 		if ( (cell_down && !cell) || (cell_diag && !cell_right && nx) )
 		{
-			this.position.y = tileToPixel(ty);
+			this.position.y = tileToPixel(ty) - collisionOffset.y;
 			this.velocity.y = 0;
 			ny = 0;
+			
 			this.jumping = false;
 		}
 	}
@@ -159,7 +184,7 @@ Player.prototype.update = function(deltaTime)
 	{
 		if ( (cell && !cell_down) || (cell_right && !cell_diag && nx) )
 		{
-			this.position.y =  tileToPixel(ty + 1);
+			this.position.y =  tileToPixel(ty + 1) - collisionOffset.y;
 			this.velocity.y = 0;
 			
 			cell = cell_down;
@@ -176,7 +201,7 @@ Player.prototype.update = function(deltaTime)
 	{
 		if ( (cell_right && !cell) || (cell_diag && !cell_down && ny) )
 		{
-			this.position.x = tileToPixel(tx);
+			this.position.x = tileToPixel(tx) - collisionOffset.x;
 			this.velocity.x = 0;
 		}
 	}
@@ -184,14 +209,13 @@ Player.prototype.update = function(deltaTime)
 	{
 		if ( (cell && !cell_right) || (cell_down && !cell_diag && ny) )
 		{
-			this.position.x = tileToPixel(tx+1);
+			this.position.x = tileToPixel(tx+1) - collisionOffset.x;
 			this.velocity.x = 0;
 		}
 	}
 }
 
-Player.prototype.draw = function(){
-
+Player.prototype.draw = function()
+{
 	this.sprite.draw(context, this.position.x, this.position.y);
 }
-

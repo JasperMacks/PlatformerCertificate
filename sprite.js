@@ -1,4 +1,4 @@
-//
+
 var Frame = function(x, y, width, height, duration){
 	this.x = x;
 	this.y = y;
@@ -51,7 +51,8 @@ Sprite.prototype.setLoop = function(loop) {
 };
 
 Sprite.prototype.setAnimationOffset = function(anim, x, y) {
-	this.offsets[anim].set(x, y);
+	this.offsets[anim].x = x;
+	this.offsets[anim].y = y;
 };
 
 Sprite.prototype.getAnimationOffset = function() {
@@ -76,7 +77,7 @@ Sprite.prototype.buildAnimation = function(frameXCount, frameYCount, frameW, fra
 	}
 	
 	this.animations.push(animation);
-	this.offsets.push( new Vector2() );
+	this.offsets.push( {x:0, y:0} );
 };
 
 Sprite.prototype.isFinished = function()

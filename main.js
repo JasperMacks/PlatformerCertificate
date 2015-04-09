@@ -43,7 +43,7 @@ var fpsTime = 0;
 
 var LAYER_COUNT = 3;
 
-//SET THESE TO HOW BIG YOUR MAP IS the is width and the is height
+//SET THESE TO HOW BIG YOUR MAP IS tw is width and th is height
 var MAP = { tw:60, th:15 }; 
 
 var TILE = 35;
@@ -53,22 +53,24 @@ var TILESET_SPACING = 2;
 var TILESET_COUNT_X = 14;
 var TILESET_COUNT_Y = 14;
 
+var LAYER_BACKGROUND = 0;
+var LAYER_PLATFORMS = 1;
+var LAYER_LADDERS = 2;
+
+
 var LEFT = 0;
 var RIGHT = 1;
+
 var ANIM_IDLE_LEFT = 0;
 var ANIM_JUMP_LEFT = 1;
 var ANIM_WALK_LEFT = 2;
+
 var ANIM_IDLE_RIGHT = 3;
 var ANIM_JUMP_RIGHT = 4;
 var ANIM_WALK_RIGHT = 5;
 
 var ANIM_MAX = 6;
 
-
-
-var LAYER_BACKGROUND = 0;
-var LAYER_PLATFORMS = 1;
-var LAYER_LADDERS = 2;
 
 var tileset = document.createElement("img");
 tileset.src = "tileset.png";
@@ -151,25 +153,12 @@ function cellAtPixelCoord(layer, x, y)
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-function drawMap()
+function drawMap(cam_offset)
 {
 	if (typeof(level1) === "undefined" )
 	{
 		alert("ADD 'level1' TO JSON FILE");
 	}
-
 
 	//this loops over all the layers in our tilemap
 	for (var layerIdx = 0 ; layerIdx < LAYER_COUNT ; ++layerIdx )
@@ -201,9 +190,9 @@ function drawMap()
 					var sy = TILESET_PADDING + (Math.floor(tileIndex / TILESET_COUNT_X)) * 
 												(TILESET_TILE + TILESET_SPACING);
 					//destination x on the canvas
-					var dx = x * TILE;
+					var dx = x * TILE - cam_offset.x;
 					//destination y on the canvas
-					var dy = (y-1) * TILE;
+					var dy = (y-1) * TILE - cam_offset.y;
 					
 					context.drawImage(tileset, sx, sy, TILESET_TILE, TILESET_TILE, 
 											   dx, dy, TILESET_TILE, TILESET_TILE);
@@ -224,19 +213,14 @@ function run()
 	
 	var deltaTime = getDeltaTime();
 	
-	if (deltaTime > 0.03){
-	
-		deltaTime = 0.03
+	if ( deltaTime > 0.03 )
+	{
+		deltaTime = 0.03;
 	}
 	
-	
-	
-	drawMap();
-	
+	drawMap({x:0, y:0});
 	player.update(deltaTime);
 	player.draw();
-	
-	
 	
 		
 	// update the frame counter 
@@ -251,8 +235,8 @@ function run()
 		
 	// draw the FPS
 	context.fillStyle = "#f00";
-	context.font="20px Arial";
-	context.fillText("Frames Per Second: " + fps, 3, 20, 220);
+	context.font="14px Arial";
+	context.fillText("FPS: " + fps, 5, 20, 100);
 }
 
 
