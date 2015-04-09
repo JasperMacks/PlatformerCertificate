@@ -1,4 +1,4 @@
-
+//
 var Frame = function(x, y, width, height, duration){
 	this.x = x;
 	this.y = y;
