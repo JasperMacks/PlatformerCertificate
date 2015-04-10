@@ -5,6 +5,8 @@ var context = canvas.getContext("2d");
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
+
+
 // This function will return the time in seconds since the function 
 // was last called
 // You should only call this function once per frame
@@ -206,12 +208,19 @@ function drawMap(cam_offset)
 var keyboard = new Keyboard();
 var player = new Player();
 
+
+var timer = 0;
+var score = 0;
+
+
+
 function run()
 {
 	context.fillStyle = "#ccc";		
 	context.fillRect(0, 0, canvas.width, canvas.height);
 	
 	var deltaTime = getDeltaTime();
+	timer += deltaTime;
 	
 	if ( deltaTime > 0.03 )
 	{
@@ -222,6 +231,15 @@ function run()
 	player.update(deltaTime);
 	player.draw();
 	
+	context.fillStyle = "darkblue";
+	context.font = "36px Arial";
+	var textToDisplay = "Timer: " + Math.floor(timer) + " Seconds";
+	context.fillText(textToDisplay, 1660, 45);
+	
+	context.fillStyle = "darkblue";
+	context.font = "36px Arial";
+	var textToDisplay = "Score: " + score + " Falling Points";
+	context.fillText(textToDisplay, 1660, 90);
 		
 	// update the frame counter 
 	fpsTime += deltaTime;

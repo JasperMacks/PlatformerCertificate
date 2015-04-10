@@ -79,7 +79,7 @@ Player.prototype.changeDirectionalAnimation = function(leftAnim, rightAnim)
 
 
 Player.prototype.update = function(deltaTime)
-{
+{ 
 	this.sprite.update(deltaTime);
 
 	var acceleration = new Vector2();
@@ -106,13 +106,14 @@ Player.prototype.update = function(deltaTime)
 	if ( this.velocity.y > 0 )
 	{
 		this.falling = true;
+		score += 1;
 	}
 	else
 	{
 		this.falling = false;
 	}
 	
-	if ( keyboard.isKeyDown(keyboard.KEY_SPACE) && !this.jumping && !this.falling)
+	if ( keyboard.isKeyDown(keyboard.KEY_UP) && !this.jumping && !this.falling)
 	{
 		acceleration.y -= jumpForce;
 		this.jumping = true;
@@ -218,4 +219,5 @@ Player.prototype.update = function(deltaTime)
 Player.prototype.draw = function()
 {
 	this.sprite.draw(context, this.position.x, this.position.y);
+	
 }
