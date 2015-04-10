@@ -78,6 +78,7 @@ var tileset = document.createElement("img");
 tileset.src = "tileset.png";
 
 
+
 var cells = [];
 
 function initializeCollision()
@@ -207,10 +208,25 @@ function drawMap(cam_offset)
 
 var keyboard = new Keyboard();
 var player = new Player();
+var enemy = new Enemy();
 
 
 var timer = 0;
 var score = 0;
+
+
+var bgMusic = new Howl(
+{
+
+
+	urls:["background.ogg"],
+	loop:true,
+	buffer:true,
+	volume:0.5
+
+});
+bgMusic.play();
+
 
 
 
@@ -231,6 +247,9 @@ function run()
 	player.update(deltaTime);
 	player.draw();
 	
+	enemy.update(deltaTime);
+	enemy.draw(0,0);
+	
 	context.fillStyle = "darkblue";
 	context.font = "36px Arial";
 	var textToDisplay = "Timer: " + Math.floor(timer) + " Seconds";
@@ -240,6 +259,25 @@ function run()
 	context.font = "36px Arial";
 	var textToDisplay = "Score: " + score + " Falling Points";
 	context.fillText(textToDisplay, 1660, 90);
+	
+	context.fillStyle = "black";
+	context.font = "20px Arial";
+	var textToDisplay = "The Goal of the Game is to get 300 Points.";
+	context.fillText(textToDisplay, 400, 145);
+
+	context.fillStyle = "black";
+	context.font = "20px Arial";
+	var textToDisplay = "You gain Points by falling (Up Key is Jump).";
+	context.fillText(textToDisplay, 400, 165);		
+		
+		if (score >= 300){
+
+		context.fillStyle = "gold";
+		context.font = "250px Arial";
+		var textToDisplay = "You Have Won!";
+		context.fillText(textToDisplay, 200, 300);
+
+	}
 		
 	// update the frame counter 
 	fpsTime += deltaTime;
@@ -256,6 +294,11 @@ function run()
 	context.font="14px Arial";
 	context.fillText("FPS: " + fps, 5, 20, 100);
 }
+
+
+
+
+
 
 
 initializeCollision();
