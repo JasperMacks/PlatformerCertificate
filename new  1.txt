@@ -1,0 +1,4 @@
+AIEPORTAL
+	Website; aieportal.aie.edu.au
+	USERNAME;	idmtcert2
+	PASSWORD;	AIECertificate2
